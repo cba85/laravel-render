@@ -16,23 +16,23 @@ services:
         networks:
             - laravel-render
 
-    db:
-        image: mysql:8.0
-        container_name: laravel-render-db
-        restart: unless-stopped
-        environment:
-            MYSQL_DATABASE: ${DB_DATABASE}
-            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-            MYSQL_PASSWORD: ${DB_PASSWORD}
-            MYSQL_USER: ${DB_USERNAME}
-            SERVICE_TAGS: dev
-            SERVICE_NAME: mysql
-        ports:
-            - "8882:3306"
-        #volumes:
-        #  - ./docker-compose/mysql:/docker-entrypoint-initdb.d
-        networks:
-            - laravel-render
+    #    db:
+    #        image: mysql:8.0
+    #        container_name: laravel-render-db
+    #        restart: unless-stopped
+    #        environment:
+    #            MYSQL_DATABASE: ${DB_DATABASE}
+    #            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    #            MYSQL_PASSWORD: ${DB_PASSWORD}
+    #            MYSQL_USER: ${DB_USERNAME}
+    #            SERVICE_TAGS: dev
+    #            SERVICE_NAME: mysql
+    #        ports:
+    #            - "8882:3306"
+    #        #volumes:
+    #        #  - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    #        networks:
+    #            - laravel-render
 
     nginx:
         image: nginx:alpine
