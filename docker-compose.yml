@@ -1,0 +1,51 @@
+version: "3.7"
+services:
+    app:
+        build:
+            args:
+                user: toto
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        image: laravel-render
+        container_name: laravel-render-app
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        networks:
+            - laravel-render
+
+    db:
+        image: mysql:8.0
+        container_name: laravel-render-db
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        ports:
+            - "8882:3306"
+        #volumes:
+        #  - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+        networks:
+            - laravel-render
+
+    nginx:
+        image: nginx:alpine
+        container_name: laravel-render-nginx
+        restart: unless-stopped
+        ports:
+            - "8002:80"
+        volumes:
+            - ./:/var/www
+            - ./docker-compose/nginx:/etc/nginx/conf.d
+        networks:
+            - laravel-render
+
+networks:
+    laravel-render:
+        driver: bridge
