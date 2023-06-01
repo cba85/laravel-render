@@ -1,12 +1,12 @@
 # Laravel render
 
-Laravel app example for render.com using Docker.
+Laravel app example for [render.com](https://render.com) using Docker.
 
 This guide uses Laravel 10 and is compatible with [Laravel Vite assets bundling](https://laravel.com/docs/10.x/vite).
 
 ## Install
 
-Follow the official guide https://render.com/docs/deploy-php-laravel-docker
+Follow [Render.com official guide](https://render.com/docs/deploy-php-laravel-docker)
 
 ## Using with Vite
 
@@ -18,7 +18,7 @@ npm install
 npm run build
 ```
 
-https://laravel.com/docs/10.x/vite#running-vite
+See https://laravel.com/docs/10.x/vite#running-vite
 
 In `Dockerfile`, uncomment to install `node` and `npm` for `Vite`:
 
